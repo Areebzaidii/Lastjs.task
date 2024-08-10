@@ -1,43 +1,32 @@
 
-function isAnagram(str1, str2) {
-    if (str1.length !== str2.length) return false;
-  
-    const charCount1 = {};
-    const charCount2 = {};
-  
-    for (let char of str1) {
-      charCount1[char] = (charCount1[char] || 0) + 1;
-    }
-  
-    for (let char of str2) {
-      charCount2[char] = (charCount2[char] || 0) + 1;
-    }
-  
-    for (let char in charCount1) {
-      if (charCount1[char] !== charCount2[char]) return false;
-    }
-  
-    return true;
+
+let  finnal=[]
+  let abc=[];
+  const words = ["bat","tab","hat","fay","yaf","tah"];
+  for(i=0;i<words.length;i++){
+    var forword="";
+  for(j=words[i].length-1;j>=0;j--){
+    forword+=words[i][j];
+    
+    
   }
-  
-  function findAnagrams(words) {
-    const result = [];
-  
-    for (let i = 0; i < words.length; i++) {
-      const anagrams = [];
-      for (let j = i + 1; j < words.length; j++) {
-        if (isAnagram(words[i], words[j])) {
-          anagrams.push(words[j]);
-        }
-      }
-      if (anagrams.length > 0) {
-        result.push([words[i], ...anagrams]);
-      }
+  abc.push(forword);
+}
+function reverse(word){
+  return word.split("").reverse().join("");
+}
+
+for(let i=0;i<words.length;i++){
+  for(let j=0;j<abc.length;j++){
+    if((words[i]===abc[j])){
+      finnal.push([words[i], reverse(abc[j])]);
+      
+      words.splice(i, 1);
+      abc.splice(j, 1);
+      
     }
-  
-    return result;
+    
+    
   }
-  
-  const words = ["bat", "tap", "cat", "tab", "pat"];
-  const anagramGroups = findAnagrams(words);
-  console.log(anagramGroups); // Output: [['bat', 'tab'], ['tap', 'pat'], ['cat']]
+}
+console.log(finnal)
